@@ -1,4 +1,11 @@
-test0ster1
-==========
+Test0ster1 (Testosterone)
+=========================
 
-Test0ster1 (pronounced as 'Testosterone', Testosterone -> Test0sterone -> Test0ster(one == 1) -> Test0ster1 ) is a test framework which uses Java 8's new functional features (i.e. Lambda Expressions, Default Methods, etc.)
+Test0ster1 (pronounced as 'Testosterone', Testosterone -> Test0sterone -> Test0ster(one == 1) -> Test0ster1 ) is a simple test framework which uses Java 8's new functional features (i.e. Lambda Expressions, Default Methods, etc.) in order to provide simple and easy to use test tools.
+
+## Why is it called 'Testosterone'?
+
+1. It has 'test' in it **Test**-osterone.
+2. The binary numbers, 0 and 1, which have something to do with software, are found in 'testosterone' (Test-**o**-ster-**one** => Test-**0**-ster-**1**).
+3. The goal of this project is to provide a simple but powerful test framework just like testosterone makes men simple (or often called stupid :) ) and physically strong.
+
