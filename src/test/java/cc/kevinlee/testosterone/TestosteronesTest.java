@@ -16,6 +16,8 @@
 package cc.kevinlee.testosterone;
 
 import static cc.kevinlee.testosterone.Testosterones.*;
+import static org.assertj.core.api.Assertions.*;
+import static org.mockito.Mockito.*;
 
 import java.util.Objects;
 
@@ -26,16 +28,47 @@ import org.junit.Test;
  * @version 0.0.1 (2014-08-12)
  *
  */
-public class TestosteronesTest
-{
+public class TestosteronesTest {
   @Test
-  public void testTestosterones() throws Exception
-  {
-    when(() -> {
+  public void testTestosterones() throws Exception {
+    /* @formatter:off */
+    test("throwingNullTest", "Test if Objects.requireNonNull throws null when the given value is null.")
+    .when(() -> {
       Objects.requireNonNull(null, "value cannot be null.");
     })
     .expect(throwing(NullPointerException.class)
            .containsMessage("cannot be null."));
+    /* @formatter:on */
   }
 
+  @Test
+  public void testTestosterones2() throws Exception {
+    final Runnable runnable = mock(Runnable.class);
+
+    /* @formatter:off */
+    test("verify method run", "Check if Runnable.run() is called.")
+    .when(() -> {
+      runnable.run();
+    })
+    .then(() -> {
+      verify(runnable, times(1)).run();
+    });
+    /* @formatter:on */
+
+  }
+
+  @Test
+  public void testTestosterones3() throws Exception {
+    /* given */
+    final String input = "  result  ";
+    final String expected = input.trim();
+
+    /* @formatter:off */
+    test("assertThat", "assert the actual result is equal to the expected")
+    .when(() -> input.trim())
+    .then(actual -> {
+      assertThat(actual).isEqualTo(expected);
+    });
+    /* @formatter:on */
+  }
 }

@@ -15,8 +15,6 @@
  */
 package cc.kevinlee.testosterone;
 
-import java.util.Objects;
-
 /**
  * @author Lee, SeongHyun (Kevin)
  * @version 0.0.1 (2014-08-12)
@@ -24,92 +22,17 @@ import java.util.Objects;
  */
 public final class Testosterones {
 
-  public static class ExpectedExceptionAssertions<EX extends Throwable> {
-    private final Class<EX> expectedThrowable;
-
-    private final ExpectedExceptionAssertion<EX> expectedExceptionAssertion;
-
-    public ExpectedExceptionAssertions(final Class<EX> expectedThrowable, final ExpectedExceptionAssertion<EX> expectedExceptionAssertion) {
-      this.expectedThrowable = expectedThrowable;
-      this.expectedExceptionAssertion = expectedExceptionAssertion;
-    }
-
-    public Class<EX> getExpectedThrowable() {
-      return expectedThrowable;
-    }
-
-    public ExpectedExceptionAssertion<EX> getExpectedExceptionAssertion() {
-      return expectedExceptionAssertion;
-    }
-
-    public ExpectedExceptionAssertions<EX> hasMessage(final String expectedMessage) {
-      expectedExceptionAssertion.andThen(throwable -> {
-        if (!throwable.getMessage()
-            .equals(expectedMessage)) {
-          throw new AssertionError("expected: " + expectedMessage + " / actual: " + throwable.getMessage(), throwable);
-        }
-      });
-      return this;
-    }
-
-    public ExpectedExceptionAssertions<EX> containsMessage(final String expectedMessage) {
-      expectedExceptionAssertion.andThen(throwable -> {
-        if (!throwable.getMessage()
-            .contains(expectedMessage)) {
-          throw new AssertionError("expected: " + expectedMessage + " / actual: " + throwable.getMessage(), throwable);
-        }
-      });
-      return this;
-    }
-  }
-
   public static <EX extends Throwable> ExpectedExceptionAssertions<EX> throwing(final Class<EX> expectedThrowable) {
-    return new ExpectedExceptionAssertions<EX>(expectedThrowable, throwable -> {
+    return new ExpectedExceptionAssertions<EX>(expectedThrowable, (testResultHandler, throwable) -> {
       if (!expectedThrowable.equals(throwable.getClass())) {
-        throw new AssertionError("expected: " + expectedThrowable + " / actual: " + throwable.getClass(), throwable);
+        throw new AssertionError(testResultHandler.getTestInfo() + "\nexpected: " + expectedThrowable + " / actual: "
+            + throwable.getClass(), throwable);
       }
     });
   }
 
-  @FunctionalInterface
-  public interface ExpectedExceptionAssertion<EX extends Throwable> {
-    void assertThrowable(final EX throwable);
-
-    default ExpectedExceptionAssertion<EX> andThen(final ExpectedExceptionAssertion<? super EX> after) {
-      Objects.requireNonNull(after);
-      return ex -> {
-        this.assertThrowable(ex);
-        after.assertThrowable(ex);
-      };
-    }
-  }
-
-  @FunctionalInterface
-  public interface ExceptionExceptionHandler {
-
-    Runnable getCodeBeingTested();
-
-    default <EX extends Throwable> void expect(final ExpectedExceptionAssertions<EX> expectedExceptionAssertion) {
-      boolean thrown = false;
-      try {
-        getCodeBeingTested().run();
-      }
-      catch (final Throwable e) {
-        @SuppressWarnings("unchecked")
-        final ExpectedExceptionAssertions<Throwable> expectedExceptionAssertions = (ExpectedExceptionAssertions<Throwable>) expectedExceptionAssertion;
-        expectedExceptionAssertions.getExpectedExceptionAssertion()
-            .assertThrowable(e);
-        thrown = true;
-      }
-      if (!thrown) {
-        throw new AssertionError("No exception was thrown when " + expectedExceptionAssertion.getExpectedThrowable()
-            .getName() + " was expected");
-      }
-    }
-  }
-
-  public static ExceptionExceptionHandler when(final Runnable runnable) {
-    return () -> runnable;
+  public static Testosterone test(final String name, final String description) {
+    return new Testosterone(name, description);
   }
 
   public Testosterones() throws IllegalAccessException {
