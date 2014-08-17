@@ -34,7 +34,6 @@
     <connection>scm:git:git@kevin-lee-github:Kevin-Lee/test0ster1.git</connection>
     <developerConnection>scm:git:git@kevin-lee-github:Kevin-Lee/test0ster1.git</developerConnection>
     <url>https://github.com/Kevin-Lee/test0ster1</url>
-    <tag>HEAD</tag>
   </scm>
 
   <distributionManagement>
