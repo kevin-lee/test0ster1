@@ -12,9 +12,9 @@ Test0ster1 (pronounced as 'Testosterone', Testosterone -> Test0sterone -> Test0s
 
 ## What does it look like?
 
-* test an expected exception 
-```java
+* test an expected exception
 
+```java
 test("throwingNullTest", "Test if Objects.requireNonNull throws null when the given value is null.")
 .when(() -> {
   Objects.requireNonNull(null, "The value cannot be null.");
@@ -24,6 +24,7 @@ test("throwingNullTest", "Test if Objects.requireNonNull throws null when the gi
 ```
 
 * test a void return type method (with [Mockito](https://github.com/mockito/mockito))
+
 ```java
 test("verifyVoidMethod", "Check if Runnable.run() is called.")
 .when(() -> {
@@ -35,6 +36,7 @@ test("verifyVoidMethod", "Check if Runnable.run() is called.")
 ```
 
 * test a method which returns some result (with [AssertJ](http://joel-costigliola.github.io/assertj/))
+
 ```java
 /* given */
 final String input = "  result  ";
