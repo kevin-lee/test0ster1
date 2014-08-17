@@ -46,7 +46,7 @@ public class TestosteronesTest {
     final Runnable runnable = mock(Runnable.class);
 
     /* @formatter:off */
-    test("verify method run", "Check if Runnable.run() is called.")
+    test("verifyVoidMethod", "Check if Runnable.run() is called.")
     .when(() -> {
       runnable.run();
     })
