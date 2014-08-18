@@ -20,7 +20,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * @author Lee, SeongHyun (Kevin)
- * @version 0.0.1 (2014-08-17)
+ * @version 0.0.1 (2014-08-12)
  *
  */
 public class Testosterone {
@@ -47,5 +47,18 @@ public class Testosterone {
 
   public <T> CallableTestResultHandler<T> when(final Callable<T> callable) {
     return new CallableTestResultHandler<T>(testNumberGenerator.getAndIncrement(), this, callable);
+  }
+
+  public static <EX extends Throwable> ExpectedExceptionAssertions<EX> throwing(final Class<EX> expectedThrowable) {
+    return new ExpectedExceptionAssertions<EX>(expectedThrowable, (testResultHandler, throwable) -> {
+      if (!expectedThrowable.equals(throwable.getClass())) {
+        throw new AssertionError(testResultHandler.getTestInfo() + "\nexpected: " + expectedThrowable + " / actual: "
+            + throwable.getClass(), throwable);
+      }
+    });
+  }
+
+  public static Testosterone test(final String name, final String description) {
+    return new Testosterone(name, description);
   }
 }

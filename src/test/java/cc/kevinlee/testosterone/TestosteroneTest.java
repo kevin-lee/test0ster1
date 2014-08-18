@@ -15,7 +15,7 @@
  */
 package cc.kevinlee.testosterone;
 
-import static cc.kevinlee.testosterone.Testosterones.*;
+import static cc.kevinlee.testosterone.Testosterone.*;
 import static org.assertj.core.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
@@ -28,9 +28,9 @@ import org.junit.Test;
  * @version 0.0.1 (2014-08-12)
  *
  */
-public class TestosteronesTest {
+public class TestosteroneTest {
   @Test
-  public void testTestosterones() throws Exception {
+  public void testTestosterone() throws Exception {
     /* @formatter:off */
     test("throwingNullTest", "Test if Objects.requireNonNull throws null when the given value is null.")
     .when(() -> {
@@ -42,7 +42,7 @@ public class TestosteronesTest {
   }
 
   @Test
-  public void testTestosterones2() throws Exception {
+  public void testTestosterone2() throws Exception {
     final Runnable runnable = mock(Runnable.class);
 
     /* @formatter:off */
@@ -58,7 +58,7 @@ public class TestosteronesTest {
   }
 
   @Test
-  public void testTestosterones3() throws Exception {
+  public void testTestosterone3() throws Exception {
     /* given */
     final String input = "  result  ";
     final String expected = input.trim();
