@@ -73,3 +73,34 @@ test("assertThat",
 });
 
 ```
+
+## Get Test0ster1
+### Maven
+* Add maven repository
+```
+<repositories>
+  ...
+
+  <repository>
+    <name>Kevin's Public Releases</name>
+    <url>http://nexus.lckymn.com/content/repositories/kevin-public-releases</url>
+  </repository>
+
+  ...
+</repositories>
+```
+* Add dependency
+```
+<dependencies>
+	...
+
+  <dependency>
+    <groupId>cc.kevinlee</groupId>
+    <artifactId>testosterone</artifactId>
+    <version>0.0.4</version>
+    <scope>test</scope>
+  </dependency>
+
+	...
+</dependencies>
+```
