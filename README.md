@@ -77,7 +77,7 @@ test("assertThat",
 ## Get Test0ster1
 ### Maven
 * Add maven repository
-```
+```xml
 <repositories>
   ...
 
@@ -90,7 +90,7 @@ test("assertThat",
 </repositories>
 ```
 * Add dependency
-```
+```xml
 <dependencies>
 	...
 
