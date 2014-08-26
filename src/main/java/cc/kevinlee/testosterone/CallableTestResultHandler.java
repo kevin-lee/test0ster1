@@ -60,7 +60,7 @@ public class CallableTestResultHandler<T> extends AbstractTestResultHandler<Cons
     try {
       final T actual = getCodeBeingTested().call();
       then.accept(actual);
-      return new ThenAfterCalling<T>(this, actual);
+      return new ThenAfterCalling<>(this, actual);
     }
     catch (final Throwable e) {
       throw new TestInfoAddedAssertionError(this.getTestInfo(), e);
