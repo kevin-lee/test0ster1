@@ -18,7 +18,8 @@ Test0ster1 (pronounced as 'Testosterone', Testosterone -> Test0sterone -> Test0s
 
 final String value = null;
 
-test("throwingNullTest", "Objects.requireNonNull(null, \"message\") should throw NullPointerException.")
+test("throwingNullTest",
+     "Objects.requireNonNull(null, \"message\") should throw NullPointerException.")
 .when(() -> {
   Objects.requireNonNull(value, "value cannot be null.");
 })
@@ -39,7 +40,8 @@ final Runnable runnable = () -> {
   innerRunnable2.run();
 };
 
-test("verifyVoidMethod", "innerRunnable1.run() and innerRunnable2.run() should be invoked when runnable.run().")
+test("verifyVoidMethod",
+     "innerRunnable1.run() and innerRunnable2.run() should be invoked when runnable.run().")
 .when(() -> {
   runnable.run();
 })
@@ -58,7 +60,8 @@ final String expected = "result";
 final String input = "  " + expected + "  ";
 
 /* @formatter:off */
-test("assertThat", "nullSafeTrim(\"  result  \") should return \"result\".")
+test("assertThat",
+     "nullSafeTrim(\"  result  \") should return \"result\".")
 .when(() ->
   nullSafeTrim(input)
 )

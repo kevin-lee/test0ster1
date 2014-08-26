@@ -34,7 +34,8 @@ public class TestosteroneTest {
     /* @formatter:off */
     final String value = null;
 
-    test("throwingNullTest", "Objects.requireNonNull(null, \"message\") should throw NullPointerException.")
+    test("throwingNullTest",
+         "Objects.requireNonNull(null, \"message\") should throw NullPointerException.")
     .when(() -> {
       Objects.requireNonNull(value, "value cannot be null.");
     })
@@ -53,7 +54,8 @@ public class TestosteroneTest {
     };
 
     /* @formatter:off */
-    test("verifyVoidMethod", "innerRunnable1.run() and innerRunnable2.run() should be invoked when runnable.run().")
+    test("verifyVoidMethod",
+         "innerRunnable1.run() and innerRunnable2.run() should be invoked when runnable.run().")
     .when(() -> {
       runnable.run();
     })
@@ -78,7 +80,8 @@ public class TestosteroneTest {
     final String input = "  " + expected + "  ";
 
     /* @formatter:off */
-    test("assertThat", "nullSafeTrim(\"  result  \") should return \"result\".")
+    test("assertThat",
+         "nullSafeTrim(\"  result  \") should return \"result\".")
     .when(() ->
       nullSafeTrim(input)
     )
