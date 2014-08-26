@@ -53,13 +53,13 @@ public class RunnableTestResultHandler extends AbstractTestResultHandler<Runnabl
   }
 
   @Override
-  public void then(final Runnable thenDo) {
+  public ThenAfterRunning then(final Runnable thenDo) {
     getCodeBeingTested().run();
     try {
       thenDo.run();
+      return new ThenAfterRunning(this);
     }
     catch (final Throwable e) {
-      System.out.println(e.getClass());
       throw new TestInfoAddedAssertionError(this.getTestInfo(), e);
     }
   }

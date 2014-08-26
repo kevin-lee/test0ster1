@@ -15,14 +15,26 @@
  */
 package cc.kevinlee.testosterone;
 
-
 /**
  * @author Lee, SeongHyun (Kevin)
- * @version 0.0.1 (2014-08-17)
+ * @version 0.0.1 (2014-08-26)
  *
  */
-public interface ThrowableTestResultHandler<T> {
-  <EX extends Throwable> void expect(ExpectedExceptionAssertions<EX> expectedExceptionAssertion);
+public class ThenAfterRunning implements Then<Runnable> {
+  private final TestResultHandler<?> testResultHandler;
 
-  Then<T> then(T then) throws Exception;
+  public ThenAfterRunning(final TestResultHandler<?> testResultHandler) {
+    this.testResultHandler = testResultHandler;
+  }
+
+  @Override
+  public ThenAfterRunning then(final Runnable thenDo) {
+    try {
+      thenDo.run();
+      return this;
+    }
+    catch (final Throwable e) {
+      throw new TestInfoAddedAssertionError(testResultHandler.getTestInfo(), e);
+    }
+  }
 }

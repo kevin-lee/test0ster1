@@ -56,12 +56,13 @@ public class CallableTestResultHandler<T> extends AbstractTestResultHandler<Cons
   }
 
   @Override
-  public void then(final Consumer<T> then) {
+  public ThenAfterCalling<T> then(final Consumer<T> then) {
     try {
-      then.accept(getCodeBeingTested().call());
+      final T actual = getCodeBeingTested().call();
+      then.accept(actual);
+      return new ThenAfterCalling<T>(this, actual);
     }
     catch (final Throwable e) {
-      System.out.println(e.getClass());
       throw new TestInfoAddedAssertionError(this.getTestInfo(), e);
     }
   }

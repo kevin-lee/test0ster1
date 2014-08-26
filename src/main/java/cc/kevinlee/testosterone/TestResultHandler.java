@@ -24,7 +24,7 @@ public interface TestResultHandler<T> {
 
   String getTestInfo();
 
-  <EX extends Throwable> void expect(ExpectedExceptionAssertions<EX> expectedExceptionAssertion);
+  <EX extends Throwable> void expect(final ExpectedExceptionAssertions<EX> expectedExceptionAssertion);
 
-  void then(T then);
+  Then<T> then(final T then);
 }

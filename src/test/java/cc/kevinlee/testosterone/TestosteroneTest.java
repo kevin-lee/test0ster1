@@ -32,40 +32,59 @@ public class TestosteroneTest {
   @Test
   public void testTestosterone() throws Exception {
     /* @formatter:off */
-    test("throwingNullTest", "Test if Objects.requireNonNull throws null when the given value is null.")
+    final String value = null;
+
+    test("throwingNullTest", "Objects.requireNonNull(null, \"message\") should throw NullPointerException.")
     .when(() -> {
-      Objects.requireNonNull(null, "value cannot be null.");
+      Objects.requireNonNull(value, "value cannot be null.");
     })
     .expect(throwing(NullPointerException.class)
-           .containsMessage("cannot be null."));
+           .containsMessage("cannot be null"));
     /* @formatter:on */
   }
 
   @Test
   public void testTestosterone2() throws Exception {
-    final Runnable runnable = mock(Runnable.class);
+    final Runnable innerRunnable1 = mock(Runnable.class);
+    final Runnable innerRunnable2 = mock(Runnable.class);
+    final Runnable runnable = () -> {
+      innerRunnable1.run();
+      innerRunnable2.run();
+    };
 
     /* @formatter:off */
-    test("verifyVoidMethod", "Check if Runnable.run() is called.")
+    test("verifyVoidMethod", "innerRunnable1.run() and innerRunnable2.run() should be invoked when runnable.run().")
     .when(() -> {
       runnable.run();
     })
+    .then(() ->
+      verify(innerRunnable1, times(1)).run()
+    )
     .then(() -> {
-      verify(runnable, times(1)).run();
+      verify(innerRunnable2, times(1)).run();
     });
     /* @formatter:on */
 
   }
 
+  private String nullSafeTrim(final String value) {
+    return value == null ? "" : value.trim();
+  }
+
   @Test
   public void testTestosterone3() throws Exception {
     /* given */
-    final String input = "  result  ";
-    final String expected = input.trim();
+    final String expected = "result";
+    final String input = "  " + expected + "  ";
 
     /* @formatter:off */
-    test("assertThat", "assert the actual result is equal to the expected")
-    .when(() -> input.trim())
+    test("assertThat", "nullSafeTrim(\"  result  \") should return \"result\".")
+    .when(() ->
+      nullSafeTrim(input)
+    )
+    .then(actual ->
+      assertThat(actual.length()).isEqualTo(expected.length())
+    )
     .then(actual -> {
       assertThat(actual).isEqualTo(expected);
     });

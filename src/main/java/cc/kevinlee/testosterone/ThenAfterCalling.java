@@ -15,14 +15,31 @@
  */
 package cc.kevinlee.testosterone;
 
+import java.util.function.Consumer;
 
 /**
  * @author Lee, SeongHyun (Kevin)
- * @version 0.0.1 (2014-08-17)
+ * @version 0.0.1 (2014-08-26)
  *
  */
-public interface ThrowableTestResultHandler<T> {
-  <EX extends Throwable> void expect(ExpectedExceptionAssertions<EX> expectedExceptionAssertion);
+public class ThenAfterCalling<T> implements Then<Consumer<T>> {
+  private final CallableTestResultHandler<T> testResultHandler;
 
-  Then<T> then(T then) throws Exception;
+  private final T actual;
+
+  public ThenAfterCalling(final CallableTestResultHandler<T> testResultHandler, final T actual) {
+    this.testResultHandler = testResultHandler;
+    this.actual = actual;
+  }
+
+  @Override
+  public ThenAfterCalling<T> then(final Consumer<T> check) {
+    try {
+      check.accept(actual);
+      return this;
+    }
+    catch (final Throwable e) {
+      throw new TestInfoAddedAssertionError(testResultHandler.getTestInfo(), e);
+    }
+  }
 }

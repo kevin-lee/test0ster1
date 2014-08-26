@@ -15,44 +15,58 @@ Test0ster1 (pronounced as 'Testosterone', Testosterone -> Test0sterone -> Test0s
 * test an expected exception
 
 ```java
-String value = null;
 
-test("throwingNullTest", "Test if Objects.requireNonNull throws null when the given value is null.")
+final String value = null;
+
+test("throwingNullTest", "Objects.requireNonNull(null, \"message\") should throw NullPointerException.")
 .when(() -> {
-  Objects.requireNonNull(value, "The value cannot be null.");
+  Objects.requireNonNull(value, "value cannot be null.");
 })
 .expect(throwing(NullPointerException.class)
        .containsMessage("cannot be null"));
+
 ```
 
 * test a void return type method (with [Mockito](https://github.com/mockito/mockito))
 
 ```java
-/* given */
-Runnable runnable = mock(Runnable.class);
 
-test("verifyVoidMethod", "Check if Runnable.run() is called.")
+/* given */
+final Runnable innerRunnable1 = mock(Runnable.class);
+final Runnable innerRunnable2 = mock(Runnable.class);
+final Runnable runnable = () -> {
+  innerRunnable1.run();
+  innerRunnable2.run();
+};
+
+test("verifyVoidMethod", "innerRunnable1.run() and innerRunnable2.run() should be invoked when runnable.run().")
 .when(() -> {
   runnable.run();
 })
+.then(() ->
+  verify(innerRunnable1, times(1)).run()
+)
 .then(() -> {
-  verify(runnable, times(1)).run();
+  verify(innerRunnable2, times(1)).run();
 });
+
 ```
 
-* test a method which returns some result (with [AssertJ](http://joel-costigliola.github.io/assertj/))
-
 ```java
-/* given */
-final String input = "  result  ";
-final String expected = input.trim();
 
-test("TestTrim", "assert the actual result is equal to the expected")
+final String expected = "result";
+final String input = "  " + expected + "  ";
+
+/* @formatter:off */
+test("assertThat", "nullSafeTrim(\"  result  \") should return \"result\".")
 .when(() ->
-  input.trim()
+  nullSafeTrim(input)
 )
 .then(actual ->
-  assertThat(actual).isEqualTo(expected)
-);
+  assertThat(actual.length()).isEqualTo(expected.length())
+)
+.then(actual -> {
+  assertThat(actual).isEqualTo(expected);
+});
 
 ```
