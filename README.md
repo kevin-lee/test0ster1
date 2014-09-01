@@ -54,6 +54,8 @@ test("verifyVoidMethod",
 
 ```
 
+* test a method which returns some result (with [AssertJ](http://joel-costigliola.github.io/assertj/))
+
 ```java
 
 final String expected = "result";
@@ -92,7 +94,7 @@ test("assertThat",
 * Add dependency
 ```xml
 <dependencies>
-	...
+  ...
 
   <dependency>
     <groupId>cc.kevinlee</groupId>
@@ -101,6 +103,6 @@ test("assertThat",
     <scope>test</scope>
   </dependency>
 
-	...
+  ...
 </dependencies>
 ```
