@@ -15,7 +15,7 @@ Test0ster1 (pronounced as 'Testosterone', Testosterone -> Test0sterone -> Test0s
 * test an expected exception
 
 ```java
-
+/* Given */
 final String value = null;
 
 test("throwingNullTest",
@@ -31,7 +31,6 @@ test("throwingNullTest",
 * test a void return type method (with [Mockito](https://github.com/mockito/mockito))
 
 ```java
-
 /* given */
 final Runnable innerRunnable1 = mock(Runnable.class);
 final Runnable innerRunnable2 = mock(Runnable.class);
@@ -57,11 +56,10 @@ test("verifyVoidMethod",
 * test a method which returns some result (with [AssertJ](http://joel-costigliola.github.io/assertj/))
 
 ```java
-
+/* Given */
 final String expected = "result";
 final String input = "  " + expected + "  ";
 
-/* @formatter:off */
 test("assertThat",
      "nullSafeTrim(\"  result  \") should return \"result\".")
 .when(() ->

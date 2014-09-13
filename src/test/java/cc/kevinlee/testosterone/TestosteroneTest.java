@@ -74,7 +74,7 @@ public class TestosteroneTest {
   }
 
   @Test
-  public void testTestosterone3() throws Exception {
+  public void testTestosterone3() {
     /* given */
     final String expected = "result";
     final String input = "  " + expected + "  ";
