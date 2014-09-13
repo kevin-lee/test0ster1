@@ -104,3 +104,31 @@ test("assertThat",
   ...
 </dependencies>
 ```
+
+### Gradle
+* Add maven repository
+
+  In `build.gradle`, add the following repository to `repositories`.
+```gradle
+maven {
+    url "http://nexus.lckymn.com/content/repositories/kevin-public-releases"
+}
+```
+  e.g.)
+```gradle
+repositories {
+  mavenCentral()
+  maven {
+    url "http://nexus.lckymn.com/content/repositories/kevin-public-releases"
+  }
+}
+```
+
+* Add Dependency
+```gradle
+testCompile group: 'cc.kevinlee', name: 'testosterone', version: '0.0.4'
+```
+  OR
+```gradle
+testCompile "cc.kevinlee:testosterone:0.0.4"
+```
