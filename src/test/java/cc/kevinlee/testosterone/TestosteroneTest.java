@@ -30,8 +30,9 @@ import org.junit.Test;
  */
 public class TestosteroneTest {
   @Test
-  public void testTestosterone() throws Exception {
+  public void testTestosteroneExpectingException() throws Exception {
     /* @formatter:off */
+    /* Given */
     final String value = null;
 
     test("throwingNullTest",
@@ -40,12 +41,39 @@ public class TestosteroneTest {
       Objects.requireNonNull(value, "value cannot be null.");
     })
     .expect(throwing(NullPointerException.class)
+           .hasMessage("value cannot be null.")
+           .containsMessage("cannot be null"));
+    /* @formatter:on */
+  }
+
+  private void throwRuntimeException(final String value) {
+    if (value == null) {
+      throw new RuntimeException("test exception", new NullPointerException("value cannot be null."));
+    }
+  }
+
+  @Test
+  public void testTestosteroneExpectingExceptionWithCause() throws Exception {
+    /* @formatter:off */
+    /* Given */
+    final String value = null;
+
+    test("throwingNullTest2",
+        "throwRuntimeException(null) should throw RuntimeException caused by NullPointerException.")
+    .when(() ->
+      throwRuntimeException(value)
+    )
+    .expect(throwing(RuntimeException.class)
+           .hasMessage("test exception")
+           .containsMessage("test ")
+           .causedBy(NullPointerException.class)
            .containsMessage("cannot be null"));
     /* @formatter:on */
   }
 
   @Test
-  public void testTestosterone2() throws Exception {
+  public void testVerifyingVoidMethods() throws Exception {
+    /* Given */
     final Runnable innerRunnable1 = mock(Runnable.class);
     final Runnable innerRunnable2 = mock(Runnable.class);
     final Runnable runnable = () -> {
@@ -74,13 +102,13 @@ public class TestosteroneTest {
   }
 
   @Test
-  public void testTestosterone3() {
+  public void testNullSafeTrim() {
     /* given */
     final String expected = "result";
     final String input = "  " + expected + "  ";
 
     /* @formatter:off */
-    test("assertThat",
+    test("testNullSafeTrim",
          "nullSafeTrim(\"  result  \") should return \"result\".")
     .when(() ->
       nullSafeTrim(input)

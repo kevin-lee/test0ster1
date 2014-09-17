@@ -15,23 +15,34 @@
  */
 package cc.kevinlee.testosterone;
 
+import java.util.function.Function;
+
 /**
  * @author Lee, SeongHyun (Kevin)
  * @version 0.0.1 (2014-08-12)
  *
  */
 public class ExpectedExceptionAssertions<EX extends Throwable> {
-  private final Class<EX> expectedThrowable;
-
+  private final Class<? extends Throwable> expectedThrowable;
+  private final Function<Throwable, ? extends Throwable> actualExceptionMapper;
   private final ExpectedExceptionAssertion<EX> expectedExceptionAssertion;
 
-  public ExpectedExceptionAssertions(final Class<EX> expectedThrowable, final ExpectedExceptionAssertion<EX> expectedExceptionAssertion) {
+  /* @formatter:off */
+  public ExpectedExceptionAssertions(final Class<? extends Throwable> expectedThrowable,
+                                     final Function<Throwable, ? extends Throwable> actualExceptionMapper,
+                                     final ExpectedExceptionAssertion<EX> expectedExceptionAssertion) {
     this.expectedThrowable = expectedThrowable;
+    this.actualExceptionMapper = actualExceptionMapper;
     this.expectedExceptionAssertion = expectedExceptionAssertion;
   }
+  /* @formatter:on */
 
-  public Class<EX> getExpectedThrowable() {
+  public Class<? extends Throwable> getExpectedThrowable() {
     return expectedThrowable;
+  }
+
+  public Function<Throwable, ? extends Throwable> getActualExceptionMapper() {
+    return actualExceptionMapper;
   }
 
   public ExpectedExceptionAssertion<EX> getExpectedExceptionAssertion() {
@@ -39,24 +50,68 @@ public class ExpectedExceptionAssertions<EX extends Throwable> {
   }
 
   public ExpectedExceptionAssertions<EX> hasMessage(final String expectedMessage) {
-    expectedExceptionAssertion.andThen((testResultHandler, throwable) -> {
-      if (!throwable.getMessage()
-          .equals(expectedMessage)) {
-        throw new AssertionError(testResultHandler.getTestInfo() + "\nexpected: " + expectedMessage + " / actual: " + throwable.getMessage(),
-            throwable);
-      }
-    });
-    return this;
+    /* @formatter:off */
+    return new ExpectedExceptionAssertions<>(
+        expectedThrowable,
+        actualExceptionMapper,
+        expectedExceptionAssertion.andThen(
+          (testResultHandler, throwable) -> {
+            final Throwable actualException = actualExceptionMapper.apply(throwable);
+            if (!actualException.getMessage()
+                .equals(expectedMessage)) {
+              throw new AssertionError(testResultHandler
+                                      .getTestInfo() +
+                                       "\nexpected: " + expectedMessage + " / actual: " +
+                                       actualException.getMessage(),
+                                       actualException);
+            }
+          }
+        )
+      );
+    /* @formatter:on */
   }
 
   public ExpectedExceptionAssertions<EX> containsMessage(final String expectedMessage) {
-    expectedExceptionAssertion.andThen((testResultHandler, throwable) -> {
-      if (!throwable.getMessage()
-          .contains(expectedMessage)) {
-        throw new AssertionError(testResultHandler.getTestInfo() + "\nexpected: " + expectedMessage + " / actual: " + throwable.getMessage(),
-            throwable);
-      }
-    });
-    return this;
+    /* @formatter:off */
+    return new ExpectedExceptionAssertions<>(
+        expectedThrowable,
+        actualExceptionMapper,
+        expectedExceptionAssertion.andThen(
+          (testResultHandler, throwable) -> {
+            final Throwable actualException = actualExceptionMapper.apply(throwable);
+            if (!actualException.getMessage()
+                .contains(expectedMessage)) {
+              throw new AssertionError(testResultHandler
+                                      .getTestInfo() +
+                                       "\nexpected: " + expectedMessage + " / actual: " +
+                                       actualException.getMessage(),
+                                       actualException);
+            }
+          }
+        )
+      );
+    /* @formatter:on */
+  }
+
+  public <C extends Throwable> ExpectedExceptionAssertions<EX> causedBy(final Class<C> cause) {
+    final Function<Throwable, ? extends Throwable> actualExceptionMapper = Throwable::getCause;
+    /* @formatter:off */
+    return new ExpectedExceptionAssertions<>(
+        cause,
+        actualExceptionMapper,
+        expectedExceptionAssertion.andThen(
+          (testResultHandler, throwable) -> {
+            final Throwable actualException = actualExceptionMapper.apply(throwable);
+            if (!cause.equals(actualException.getClass())) {
+              throw new AssertionError(testResultHandler
+                                      .getTestInfo() +
+                                       "\ncause expected: " + cause + " / actual cause: " +
+                                       actualException.getClass(),
+                                       actualException);
+            }
+          }
+        )
+      );
+    /* @formatter:on */
   }
 }

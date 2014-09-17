@@ -20,16 +20,16 @@ package cc.kevinlee.testosterone;
  * @version 0.0.1 (2014-08-12)
  *
  */
-public class RunnableTestResultHandler extends AbstractTestResultHandler<Runnable> implements TestResultHandler<Runnable> {
+public class RunnableTestResultHandler extends AbstractTestResultHandler<ThrowableRunnable> implements TestResultHandler<ThrowableRunnable> {
 
-  private final Runnable runnable;
+  private final ThrowableRunnable runnable;
 
-  public RunnableTestResultHandler(final int testNumber, final Testosterone testosterone, final Runnable runnable) {
+  public RunnableTestResultHandler(final int testNumber, final Testosterone testosterone, final ThrowableRunnable runnable) {
     super(testNumber, testosterone);
     this.runnable = runnable;
   }
 
-  Runnable getCodeBeingTested() {
+  ThrowableRunnable getCodeBeingTested() {
     return runnable;
   }
 
@@ -53,9 +53,9 @@ public class RunnableTestResultHandler extends AbstractTestResultHandler<Runnabl
   }
 
   @Override
-  public ThenAfterRunning then(final Runnable thenDo) {
-    getCodeBeingTested().run();
+  public ThenAfterRunning then(final ThrowableRunnable thenDo) {
     try {
+      getCodeBeingTested().run();
       thenDo.run();
       return new ThenAfterRunning(this);
     }

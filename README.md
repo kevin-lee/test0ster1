@@ -15,63 +15,123 @@ Test0ster1 (pronounced as 'Testosterone', Testosterone -> Test0sterone -> Test0s
 * test an expected exception
 
 ```java
-/* Given */
-final String value = null;
+import static cc.kevinlee.testosterone.Testosterone.*;
+import java.util.Objects;
 
-test("throwingNullTest",
-     "Objects.requireNonNull(null, \"message\") should throw NullPointerException.")
-.when(() -> {
-  Objects.requireNonNull(value, "value cannot be null.");
-})
-.expect(throwing(NullPointerException.class)
-       .containsMessage("cannot be null"));
+import org.junit.Test;
+```
+```java
 
+  @Test
+  public void testTestosteroneExpectingException() throws Exception {
+    /* Given */
+    final String value = null;
+    
+    test("throwingNullTest",
+         "Objects.requireNonNull(null, \"message\") should throw NullPointerException.")
+    .when(() -> {
+      Objects.requireNonNull(value, "value cannot be null.");
+    })
+    .expect(throwing(NullPointerException.class)
+           .containsMessage("cannot be null"));
+  }
+```
+
+* test an expected exception and its cause
+```java
+import static cc.kevinlee.testosterone.Testosterone.*;
+
+import org.junit.Test;
+```
+```java
+  private void throwRuntimeException(final String value) {
+    if (value == null) {
+      throw new RuntimeException("test exception", new NullPointerException("value cannot be null."));
+    }
+  }
+
+  @Test
+  public void testTestosteroneExpectingExceptionWithCause() throws Exception {
+    /* Given */
+    final String value = null;
+
+    test("throwingNullTest2",
+        "throwRuntimeException(null) should throw RuntimeException caused by NullPointerException.")
+    .when(() ->
+      throwRuntimeException(value)
+    )
+    .expect(throwing(RuntimeException.class)
+           .hasMessage("test exception")
+           .containsMessage("test ")
+           .causedBy(NullPointerException.class)
+           .containsMessage("cannot be null"));
+  }
 ```
 
 * test a void return type method (with [Mockito](https://github.com/mockito/mockito))
 
 ```java
-/* given */
-final Runnable innerRunnable1 = mock(Runnable.class);
-final Runnable innerRunnable2 = mock(Runnable.class);
-final Runnable runnable = () -> {
-  innerRunnable1.run();
-  innerRunnable2.run();
-};
+import static cc.kevinlee.testosterone.Testosterone.*;
+import static org.mockito.Mockito.*;
 
-test("verifyVoidMethod",
-     "innerRunnable1.run() and innerRunnable2.run() should be invoked when runnable.run().")
-.when(() -> {
-  runnable.run();
-})
-.then(() ->
-  verify(innerRunnable1, times(1)).run()
-)
-.then(() -> {
-  verify(innerRunnable2, times(1)).run();
-});
-
+import org.junit.Test;
+```
+```java
+  @Test
+  public void testVerifyingVoidMethods() throws Exception {
+    /* given */
+    final Runnable innerRunnable1 = mock(Runnable.class);
+    final Runnable innerRunnable2 = mock(Runnable.class);
+    final Runnable runnable = () -> {
+      innerRunnable1.run();
+      innerRunnable2.run();
+    };
+    
+    test("verifyVoidMethod",
+         "innerRunnable1.run() and innerRunnable2.run() should be invoked when runnable.run().")
+    .when(() -> {
+      runnable.run();
+    })
+    .then(() ->
+      verify(innerRunnable1, times(1)).run()
+    )
+    .then(() -> {
+      verify(innerRunnable2, times(1)).run();
+    });
+  }
 ```
 
 * test a method which returns some result (with [AssertJ](http://joel-costigliola.github.io/assertj/))
 
 ```java
-/* Given */
-final String expected = "result";
-final String input = "  " + expected + "  ";
+import static cc.kevinlee.testosterone.Testosterone.*;
+import static org.assertj.core.api.Assertions.*;
 
-test("assertThat",
-     "nullSafeTrim(\"  result  \") should return \"result\".")
-.when(() ->
-  nullSafeTrim(input)
-)
-.then(actual ->
-  assertThat(actual.length()).isEqualTo(expected.length())
-)
-.then(actual -> {
-  assertThat(actual).isEqualTo(expected);
-});
+import org.junit.Test;
+```
+```java
+  private String nullSafeTrim(final String value) {
+    return value == null ? "" : value.trim();
+  }
 
+  @Test
+  public void testNullSafeTrim() {
+    /* Given */
+    final String expected = "result";
+    final String input = "  " + expected + "  ";
+    
+    test("assertThat",
+         "nullSafeTrim(\"  result  \") should return \"result\".")
+    .when(() ->
+      nullSafeTrim(input)
+    )
+    .then(actual ->
+      assertThat(actual.length()).isEqualTo(expected.length())
+    )
+    .then(actual -> {
+      assertThat(actual).isEqualTo(expected);
+    });
+  }
 ```
 
 ## Get Test0ster1
@@ -97,7 +157,7 @@ test("assertThat",
   <dependency>
     <groupId>cc.kevinlee</groupId>
     <artifactId>testosterone</artifactId>
-    <version>0.0.4</version>
+    <version>0.0.5</version>
     <scope>test</scope>
   </dependency>
 
@@ -126,9 +186,9 @@ repositories {
 
 * Add Dependency
 ```gradle
-testCompile group: 'cc.kevinlee', name: 'testosterone', version: '0.0.4'
+testCompile group: 'cc.kevinlee', name: 'testosterone', version: '0.0.5'
 ```
   OR
 ```gradle
-testCompile "cc.kevinlee:testosterone:0.0.4"
+testCompile "cc.kevinlee:testosterone:0.0.5"
 ```

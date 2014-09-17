@@ -17,6 +17,7 @@ package cc.kevinlee.testosterone;
 
 import java.util.concurrent.Callable;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.function.Function;
 
 /**
  * @author Lee, SeongHyun (Kevin)
@@ -41,19 +42,21 @@ public class Testosterone {
     return description;
   }
 
-  public RunnableTestResultHandler when(final Runnable runnable) {
+  public RunnableTestResultHandler when(final ThrowableRunnable runnable) {
     return new RunnableTestResultHandler(testNumberGenerator.getAndIncrement(), this, runnable);
   }
 
   public <T> CallableTestResultHandler<T> when(final Callable<T> callable) {
-    return new CallableTestResultHandler<T>(testNumberGenerator.getAndIncrement(), this, callable);
+    return new CallableTestResultHandler<>(testNumberGenerator.getAndIncrement(), this, callable);
   }
 
   public static <EX extends Throwable> ExpectedExceptionAssertions<EX> throwing(final Class<EX> expectedThrowable) {
-    return new ExpectedExceptionAssertions<EX>(expectedThrowable, (testResultHandler, throwable) -> {
-      if (!expectedThrowable.equals(throwable.getClass())) {
+    final Function<Throwable, ? extends Throwable> actualExceptionMapper = Function.identity();
+    return new ExpectedExceptionAssertions<>(expectedThrowable, actualExceptionMapper, (testResultHandler, throwable) -> {
+      final Throwable actualException = actualExceptionMapper.apply(throwable);
+      if (!expectedThrowable.equals(actualException.getClass())) {
         throw new AssertionError(testResultHandler.getTestInfo() + "\nexpected: " + expectedThrowable + " / actual: "
-            + throwable.getClass(), throwable);
+            + actualException.getClass(), actualException);
       }
     });
   }

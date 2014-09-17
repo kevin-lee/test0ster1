@@ -20,7 +20,7 @@ package cc.kevinlee.testosterone;
  * @version 0.0.1 (2014-08-26)
  *
  */
-public class ThenAfterRunning implements Then<Runnable> {
+public class ThenAfterRunning implements Then<ThrowableRunnable> {
   private final TestResultHandler<?> testResultHandler;
 
   public ThenAfterRunning(final TestResultHandler<?> testResultHandler) {
@@ -28,7 +28,7 @@ public class ThenAfterRunning implements Then<Runnable> {
   }
 
   @Override
-  public ThenAfterRunning then(final Runnable thenDo) {
+  public ThenAfterRunning then(final ThrowableRunnable thenDo) {
     try {
       thenDo.run();
       return this;

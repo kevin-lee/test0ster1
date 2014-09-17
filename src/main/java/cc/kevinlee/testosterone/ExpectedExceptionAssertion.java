@@ -24,9 +24,9 @@ import java.util.Objects;
  */
 @FunctionalInterface
 public interface ExpectedExceptionAssertion<EX extends Throwable> {
-  void assertThrowable(final TestResultHandler<?> testResultHandler, final EX throwable);
+  void assertThrowable(final TestResultHandler<?> testResultHandler, final Throwable throwable);
 
-  default ExpectedExceptionAssertion<EX> andThen(final ExpectedExceptionAssertion<? super EX> after) {
+  default <E extends Throwable> ExpectedExceptionAssertion<EX> andThen(final ExpectedExceptionAssertion<? super E> after) {
     Objects.requireNonNull(after);
     return (testResultHandler, ex) -> {
       this.assertThrowable(testResultHandler, ex);
