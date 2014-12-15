@@ -190,10 +190,12 @@ repositories {
 ```
 
 * Add Dependency
+
 ```gradle
 testCompile group: 'cc.kevinlee', name: 'testosterone', version: '0.0.5'
 ```
   OR
+
 ```gradle
 testCompile "cc.kevinlee:testosterone:0.0.5"
 ```
