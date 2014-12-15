@@ -137,6 +137,7 @@ import org.junit.Test;
 ## Get Test0ster1
 ### Maven
 * Add maven repository
+
 ```xml
 <repositories>
   ...
@@ -149,7 +150,9 @@ import org.junit.Test;
   ...
 </repositories>
 ```
+
 * Add dependency
+
 ```xml
 <dependencies>
   ...
@@ -169,12 +172,14 @@ import org.junit.Test;
 * Add maven repository
 
   In `build.gradle`, add the following repository to `repositories`.
+
 ```gradle
 maven {
     url "http://nexus.lckymn.com/content/repositories/kevin-public-releases"
 }
 ```
   e.g.)
+
 ```gradle
 repositories {
   mavenCentral()
