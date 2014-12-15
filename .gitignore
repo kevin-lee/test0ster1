@@ -18,5 +18,7 @@ target/
 .classpath
 .settings/
 .metadata
+*.iml
+.idea
 bin/
 tmp/
