@@ -38,6 +38,7 @@ import org.junit.Test;
 ```
 
 * test an expected exception and its cause
+
 ```java
 import static cc.kevinlee.testosterone.Testosterone.*;
 
