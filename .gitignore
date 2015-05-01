@@ -22,3 +22,8 @@ target/
 .idea
 bin/
 tmp/
+
+gradle/
+gradlew*
+.gradle
+build/
