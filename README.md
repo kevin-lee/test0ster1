@@ -146,8 +146,12 @@ import org.junit.Test;
   ...
 
   <repository>
-    <name>Kevin's Public Releases</name>
-    <url>http://nexus.lckymn.com/content/repositories/kevin-public-releases</url>
+    <snapshots>
+      <enabled>false</enabled>
+    </snapshots>
+    <id>bintray-kevinlee-maven</id>
+    <name>bintray</name>
+    <url>http://dl.bintray.com/kevinlee/maven</url>
   </repository>
 
   ...
@@ -162,7 +166,7 @@ import org.junit.Test;
 
   <dependency>
     <groupId>cc.kevinlee</groupId>
-    <artifactId>testosterone</artifactId>
+    <artifactId>test0ster1</artifactId>
     <version>0.0.5</version>
     <scope>test</scope>
   </dependency>
@@ -178,7 +182,7 @@ import org.junit.Test;
 
 ```gradle
 maven {
-    url "http://nexus.lckymn.com/content/repositories/kevin-public-releases"
+    url  "http://dl.bintray.com/kevinlee/maven"
 }
 ```
   e.g.)
@@ -187,7 +191,7 @@ maven {
 repositories {
   mavenCentral()
   maven {
-    url "http://nexus.lckymn.com/content/repositories/kevin-public-releases"
+    url  "http://dl.bintray.com/kevinlee/maven"
   }
 }
 ```
@@ -195,10 +199,10 @@ repositories {
 * Add Dependency
 
 ```gradle
-testCompile group: 'cc.kevinlee', name: 'testosterone', version: '0.0.5'
+testCompile group: 'cc.kevinlee', name: 'test0ster1', version: '0.0.5'
 ```
   OR
 
 ```gradle
-testCompile "cc.kevinlee:testosterone:0.0.5"
+testCompile "cc.kevinlee:test0ster1:0.0.5"
 ```
