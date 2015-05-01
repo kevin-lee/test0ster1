@@ -20,7 +20,7 @@ apply plugin: 'com.jfrog.bintray'
 
 description = "test0ster1"
 
-version = '0.0.6-SNAPSHOT'
+version = '0.0.5'
 
 //task wrapper(type: Wrapper) {
 //    gradleVersion = '2.3'
