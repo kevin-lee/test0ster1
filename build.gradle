@@ -117,7 +117,7 @@ bintray {
   pkg {
     repo = 'maven'
     name = 'test0ster1'
-    desc = 'Test0ster1 (pronounced as 'Testosterone', Testosterone -> Test0sterone -> Test0ster(one == 1) -> Test0ster1 ) is a test framework which uses Java 8\'s new functional features (i.e. Lambda Expressions, Default Methods, etc.)'
+    desc = "Test0ster1 (pronounced as 'Testosterone', Testosterone -> Test0sterone -> Test0ster(one == 1) -> Test0ster1 ) is a test framework which uses Java 8's new functional features (i.e. Lambda Expressions, Default Methods, etc.)"
     websiteUrl = 'https://github.com/Kevin-Lee/test0ster1'
     issueTrackerUrl = 'https://github.com/Kevin-Lee/test0ster1/issues'
     vcsUrl = 'https://github.com/Kevin-Lee/test0ster1.git'
