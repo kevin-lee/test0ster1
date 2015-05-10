@@ -1,4 +1,12 @@
 language: java
+cache:
+  directories:
+    - "$HOME/.gradle"
+    - "$HOME/.m2"
 jdk:
   - oraclejdk8
 script: mvn clean test
+script: gradle clean test jar
+
+after_success:
+  - gradle jacocoTestReport coveralls

@@ -2,17 +2,30 @@ apply plugin: 'java'
 apply plugin: 'idea'
 apply plugin: 'maven'
 apply plugin: 'maven-publish'
+apply plugin: 'com.jfrog.bintray'
+apply plugin: 'jacoco'
+apply plugin: 'com.github.kt3k.coveralls'
 
 buildscript {
   repositories {
     jcenter()
     mavenCentral()
+    maven {
+      url  "http://dl.bintray.com/kevinlee/maven"
+    }
   }
   dependencies {
     classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.1'
+    classpath 'org.kt3k.gradle.plugin:coveralls-gradle-plugin:2.3.2'
   }
 }
-apply plugin: 'com.jfrog.bintray'
+
+jacocoTestReport {
+  reports {
+    xml.enabled = true // coveralls plugin depends on xml format report
+    html.enabled = true
+  }
+}
 
 //plugins {
 //  id "com.jfrog.bintray" version "1.1"
