@@ -16,7 +16,7 @@ buildscript {
   }
   dependencies {
     classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.1'
-    classpath 'org.kt3k.gradle.plugin:coveralls-gradle-plugin:2.3.2'
+    classpath 'org.kt3k.gradle.plugin:coveralls-gradle-plugin:2.4.0'
   }
 }
 
@@ -54,12 +54,6 @@ project.group = 'cc.kevinlee'
 repositories {
   mavenLocal()
   mavenCentral()
-  maven {
-    url 'http://nexus.lckymn.com/content/repositories/kevin-public-releases'
-  }
-  maven {
-    url 'http://nexus.lckymn.com/content/repositories/kevin-public-snapshots'
-  }
 }
 
 uploadArchives {
