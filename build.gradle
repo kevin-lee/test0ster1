@@ -11,7 +11,7 @@ buildscript {
     jcenter()
     mavenCentral()
     maven {
-      url  "http://dl.bintray.com/kevinlee/maven"
+      url  "http://dl.bintray.com/kt3k/gradle-plugins"
     }
   }
   dependencies {
@@ -33,7 +33,7 @@ jacocoTestReport {
 
 description = "test0ster1"
 
-version = '0.0.5'
+version = '0.0.6'
 
 //task wrapper(type: Wrapper) {
 //    gradleVersion = '2.3'
