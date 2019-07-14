@@ -33,7 +33,7 @@ jacocoTestReport {
 
 description = "test0ster1"
 
-version = '0.0.6'
+version = '0.0.7'
 
 //task wrapper(type: Wrapper) {
 //    gradleVersion = '2.3'
