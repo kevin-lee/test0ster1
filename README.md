@@ -22,7 +22,7 @@ Test0ster1 (pronounced as 'Testosterone', Testosterone -> Test0sterone -> Test0s
 * test an expected exception
 
 ```java
-import static cc.kevinlee.testosterone.Testosterone.*;
+import static kevinlee.testosterone.Testosterone.*;
 import java.util.Objects;
 
 import org.junit.Test;
@@ -47,7 +47,7 @@ import org.junit.Test;
 * test an expected exception and its cause
 
 ```java
-import static cc.kevinlee.testosterone.Testosterone.*;
+import static kevinlee.testosterone.Testosterone.*;
 
 import org.junit.Test;
 ```
@@ -79,7 +79,7 @@ import org.junit.Test;
 * test a void return type method (with [Mockito](https://github.com/mockito/mockito))
 
 ```java
-import static cc.kevinlee.testosterone.Testosterone.*;
+import static kevinlee.testosterone.Testosterone.*;
 import static org.mockito.Mockito.*;
 
 import org.junit.Test;
@@ -112,7 +112,7 @@ import org.junit.Test;
 * test a method which returns some result (with [AssertJ](http://joel-costigliola.github.io/assertj/))
 
 ```java
-import static cc.kevinlee.testosterone.Testosterone.*;
+import static kevinlee.testosterone.Testosterone.*;
 import static org.assertj.core.api.Assertions.*;
 
 import org.junit.Test;
@@ -170,7 +170,7 @@ import org.junit.Test;
   ...
 
   <dependency>
-    <groupId>cc.kevinlee</groupId>
+    <groupId>kevinlee</groupId>
     <artifactId>test0ster1</artifactId>
     <version>0.0.5</version>
     <scope>test</scope>
@@ -204,10 +204,10 @@ repositories {
 * Add Dependency
 
 ```gradle
-testCompile group: 'cc.kevinlee', name: 'test0ster1', version: '0.0.5'
+testCompile group: 'kevinlee', name: 'test0ster1', version: '0.0.5'
 ```
   OR
 
 ```gradle
-testCompile "cc.kevinlee:test0ster1:0.0.5"
+testCompile "kevinlee:test0ster1:0.0.5"
 ```
