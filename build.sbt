@@ -13,6 +13,7 @@ lazy val test0ster1 = (project in file("."))
       name := "test0ster1"
     )
     .enablePlugins(DevOopsJavaPlugin)
+    .enablePlugins(DevOopsGitReleasePlugin)
     .settings(
       libraryDependencies ++= Seq(
         "org.junit.jupiter" % "junit-jupiter" % junitJupiterVersion % Test,
