@@ -1,3 +1,6 @@
+import kevinlee.sbt.SbtCommon._
+import kevinlee.sbt.devoops.data.SbtTaskError
+import kevinlee.sbt.io.CaseSensitivity
 import org.scoverage.coveralls.Imports.CoverallsKeys._
 
 ThisBuild / organization := "kevinlee"
@@ -46,6 +49,21 @@ lazy val test0ster1 = (project in file("."))
     , coverallsTokenFile := Option(s"""${sys.props("user.home")}/.coveralls-credentials""")
     /* GitHub Release { */
     , gitTagFrom := "master"
+    // FIXME: remove it once sbt-devoops has the jar file path configurable.
+    , devOopsCopyReleasePackages := {
+        val result: Vector[File] = copyFiles(
+          CaseSensitivity.caseSensitive
+          , baseDirectory.value
+          , List(s"target/${name.value}*.jar")
+          , new File(new File(devOopsCiDir.value), "dist")
+        ) match {
+          case Left(error) =>
+            messageOnlyException(SbtTaskError.render(error))
+          case Right(files) =>
+            files
+        }
+        result
+      }
     /* } GitHub Release */
     )
 
