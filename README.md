@@ -1,12 +1,9 @@
 Test0ster1 (Testosterone)
 =========================
 
-[![Build Status](https://travis-ci.org/Kevin-Lee/test0ster1.svg?branch=master)](https://travis-ci.org/Kevin-Lee/test0ster1)
+[![Build Status](https://semaphoreci.com/api/v1/kevin-lee/test0ster1/branches/master/badge.svg)](https://semaphoreci.com/kevin-lee/test0ster1)
 [![Coverage Status](https://coveralls.io/repos/Kevin-Lee/test0ster1/badge.svg)](https://coveralls.io/r/Kevin-Lee/test0ster1)
 [![Download](https://api.bintray.com/packages/kevinlee/maven/test0ster1/images/download.svg)](https://bintray.com/kevinlee/maven/test0ster1/_latestVersion)
-
-[![views](https://sourcegraph.com/api/repos/github.com/Kevin-Lee/test0ster1/.counters/views.svg)](https://sourcegraph.com/github.com/Kevin-Lee/test0ster1)
-[![views 24h](https://sourcegraph.com/api/repos/github.com/Kevin-Lee/test0ster1/.counters/views-24h.svg)](https://sourcegraph.com/github.com/Kevin-Lee/test0ster1)
 
 Test0ster1 (pronounced as 'Testosterone', Testosterone -> Test0sterone -> Test0ster(one == 1) -> Test0ster1 ) is a simple test helper framework which uses Java 8's new functional features (i.e. Lambda Expressions, Default Methods, etc.) in order to provide simple and easy to use test tools.
 
@@ -22,7 +19,7 @@ Test0ster1 (pronounced as 'Testosterone', Testosterone -> Test0sterone -> Test0s
 * test an expected exception
 
 ```java
-import static cc.kevinlee.testosterone.Testosterone.*;
+import static kevinlee.testosterone.Testosterone.*;
 import java.util.Objects;
 
 import org.junit.Test;
@@ -47,7 +44,7 @@ import org.junit.Test;
 * test an expected exception and its cause
 
 ```java
-import static cc.kevinlee.testosterone.Testosterone.*;
+import static kevinlee.testosterone.Testosterone.*;
 
 import org.junit.Test;
 ```
@@ -79,7 +76,7 @@ import org.junit.Test;
 * test a void return type method (with [Mockito](https://github.com/mockito/mockito))
 
 ```java
-import static cc.kevinlee.testosterone.Testosterone.*;
+import static kevinlee.testosterone.Testosterone.*;
 import static org.mockito.Mockito.*;
 
 import org.junit.Test;
@@ -112,7 +109,7 @@ import org.junit.Test;
 * test a method which returns some result (with [AssertJ](http://joel-costigliola.github.io/assertj/))
 
 ```java
-import static cc.kevinlee.testosterone.Testosterone.*;
+import static kevinlee.testosterone.Testosterone.*;
 import static org.assertj.core.api.Assertions.*;
 
 import org.junit.Test;
@@ -170,9 +167,9 @@ import org.junit.Test;
   ...
 
   <dependency>
-    <groupId>cc.kevinlee</groupId>
+    <groupId>kevinlee</groupId>
     <artifactId>test0ster1</artifactId>
-    <version>0.0.5</version>
+    <version>0.0.7</version>
     <scope>test</scope>
   </dependency>
 
@@ -204,10 +201,10 @@ repositories {
 * Add Dependency
 
 ```gradle
-testCompile group: 'cc.kevinlee', name: 'test0ster1', version: '0.0.5'
+testCompile group: 'kevinlee', name: 'test0ster1', version: '0.0.7'
 ```
   OR
 
 ```gradle
-testCompile "cc.kevinlee:test0ster1:0.0.5"
+testCompile "kevinlee:test0ster1:0.0.7"
 ```

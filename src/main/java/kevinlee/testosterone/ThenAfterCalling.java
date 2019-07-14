@@ -13,24 +13,29 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package cc.kevinlee.testosterone;
+package kevinlee.testosterone;
+
+import java.util.function.Consumer;
 
 /**
  * @author Lee, SeongHyun (Kevin)
  * @version 0.0.1 (2014-08-26)
  *
  */
-public class ThenAfterRunning implements Then<ThrowableRunnable> {
-  private final TestResultHandler<?> testResultHandler;
+public class ThenAfterCalling<T> implements Then<Consumer<T>> {
+  private final CallableTestResultHandler<T> testResultHandler;
 
-  public ThenAfterRunning(final TestResultHandler<?> testResultHandler) {
+  private final T actual;
+
+  public ThenAfterCalling(final CallableTestResultHandler<T> testResultHandler, final T actual) {
     this.testResultHandler = testResultHandler;
+    this.actual = actual;
   }
 
   @Override
-  public ThenAfterRunning then(final ThrowableRunnable thenDo) {
+  public ThenAfterCalling<T> then(final Consumer<T> check) {
     try {
-      thenDo.run();
+      check.accept(actual);
       return this;
     }
     catch (final Throwable e) {

@@ -15,8 +15,8 @@ buildscript {
     }
   }
   dependencies {
-    classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.1'
-    classpath 'org.kt3k.gradle.plugin:coveralls-gradle-plugin:2.4.0'
+    classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.4'
+    classpath 'org.kt3k.gradle.plugin:coveralls-gradle-plugin:2.8.2'
   }
 }
 
@@ -33,7 +33,7 @@ jacocoTestReport {
 
 description = "test0ster1"
 
-version = '0.0.6'
+version = '0.0.7'
 
 //task wrapper(type: Wrapper) {
 //    gradleVersion = '2.3'
@@ -41,7 +41,7 @@ version = '0.0.6'
 
 def projectSourceEncoding = 'UTF-8'
 def projectJavaVersion = '1.8'
-def junitVersion = '4.11'
+def junitJupiterVersion = '5.5.0'
 
 sourceCompatibility = projectJavaVersion
 targetCompatibility = projectJavaVersion
@@ -49,7 +49,7 @@ targetCompatibility = projectJavaVersion
 compileJava.options.encoding = projectSourceEncoding
 
 project.version = version
-project.group = 'cc.kevinlee'
+project.group = 'kevinlee'
 
 repositories {
   mavenLocal()
@@ -59,10 +59,10 @@ repositories {
 uploadArchives {
   repositories {
     mavenDeployer {
-//      repository(url: 'http://nexus.lckymn.com/content/repositories/kevin-public-releases') {
+//      repository(url: 'https://repo.kevinlee.io/repository/kevin-public-releases') {
 //        authentication(userName: hasProperty('mavenDeployUser') ? mavenDeployUser : "", password: hasProperty('mavenDeployPassword') ? mavenDeployPassword : "")
 //      }
-      snapshotRepository(url: 'http://nexus.lckymn.com/content/repositories/kevin-public-snapshots') {
+      snapshotRepository(url: 'https://repo.kevinlee.io/repository/kevin-public-snapshots') {
         authentication(userName: hasProperty('mavenDeployUser') ? mavenDeployUser : "", password: hasProperty('mavenDeployPassword') ? mavenDeployPassword : "")
       }
     }
@@ -89,9 +89,9 @@ artifacts {
 }
 
 dependencies {
-  testCompile "junit:junit:${junitVersion}",
-      "org.assertj:assertj-core:3.0.0",
-      "org.mockito:mockito-all:1.10.19"
+  testCompile "org.junit.jupiter:junit-jupiter:${junitJupiterVersion}",
+      "org.assertj:assertj-core:3.12.2",
+      "org.mockito:mockito-core:3.0.0"
 }
 
 jar {
