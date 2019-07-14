@@ -1,7 +1,7 @@
 import org.scoverage.coveralls.Imports.CoverallsKeys._
 
 ThisBuild / organization := "kevinlee"
-ThisBuild / version := "0.0.6"
+ThisBuild / version := "0.0.7"
 ThisBuild / scalaVersion := "2.12.8"
 
 val projectBuildSourceEncoding = "UTF-8"

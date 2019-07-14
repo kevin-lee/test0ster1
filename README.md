@@ -169,7 +169,7 @@ import org.junit.Test;
   <dependency>
     <groupId>kevinlee</groupId>
     <artifactId>test0ster1</artifactId>
-    <version>0.0.6</version>
+    <version>0.0.7</version>
     <scope>test</scope>
   </dependency>
 
@@ -201,10 +201,10 @@ repositories {
 * Add Dependency
 
 ```gradle
-testCompile group: 'kevinlee', name: 'test0ster1', version: '0.0.6'
+testCompile group: 'kevinlee', name: 'test0ster1', version: '0.0.7'
 ```
   OR
 
 ```gradle
-testCompile "kevinlee:test0ster1:0.0.6"
+testCompile "kevinlee:test0ster1:0.0.7"
 ```
