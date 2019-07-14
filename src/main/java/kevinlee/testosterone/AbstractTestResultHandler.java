@@ -13,24 +13,28 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package cc.kevinlee.testosterone;
-
-import java.util.Objects;
+package kevinlee.testosterone;
 
 /**
  * @author Lee, SeongHyun (Kevin)
  * @version 0.0.1 (2014-08-12)
  *
  */
-@FunctionalInterface
-public interface ExpectedExceptionAssertion<EX extends Throwable> {
-  void assertThrowable(final TestResultHandler<?> testResultHandler, final Throwable throwable);
+public abstract class AbstractTestResultHandler<T> implements TestResultHandler<T> {
 
-  default <E extends Throwable> ExpectedExceptionAssertion<EX> andThen(final ExpectedExceptionAssertion<? super E> after) {
-    Objects.requireNonNull(after);
-    return (testResultHandler, ex) -> {
-      this.assertThrowable(testResultHandler, ex);
-      after.assertThrowable(testResultHandler, ex);
-    };
+  protected final int testNumber;
+
+  protected final Testosterone testosterone;
+
+  public AbstractTestResultHandler(final int testNumber, final Testosterone testosterone) {
+    this.testNumber = testNumber;
+    this.testosterone = testosterone;
+  }
+
+  @Override
+  public String getTestInfo() {
+    final String name = testosterone.getName();
+    final String description = testosterone.getDescription();
+    return "## Test Info \n[Name: " + name + " (" + testNumber + ")" + "] \n[Description: " + description + "] \n";
   }
 }

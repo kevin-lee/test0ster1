@@ -13,31 +13,34 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package cc.kevinlee.testosterone;
+package kevinlee.testosterone;
+
+import java.util.concurrent.Callable;
+import java.util.function.Consumer;
 
 /**
  * @author Lee, SeongHyun (Kevin)
- * @version 0.0.1 (2014-08-12)
+ * @version 0.0.1 (2014-08-16)
  *
  */
-public class RunnableTestResultHandler extends AbstractTestResultHandler<ThrowableRunnable> implements TestResultHandler<ThrowableRunnable> {
+public class CallableTestResultHandler<T> extends AbstractTestResultHandler<Consumer<T>> implements ThrowableTestResultHandler<Consumer<T>> {
 
-  private final ThrowableRunnable runnable;
+  private final Callable<T> callable;
 
-  public RunnableTestResultHandler(final int testNumber, final Testosterone testosterone, final ThrowableRunnable runnable) {
+  public CallableTestResultHandler(final int testNumber, final Testosterone testosterone, final Callable<T> callable) {
     super(testNumber, testosterone);
-    this.runnable = runnable;
+    this.callable = callable;
   }
 
-  ThrowableRunnable getCodeBeingTested() {
-    return runnable;
+  Callable<T> getCodeBeingTested() {
+    return callable;
   }
 
   @Override
   public <EX extends Throwable> void expect(final ExpectedExceptionAssertions<EX> expectedExceptionAssertion) {
     boolean thrown = false;
     try {
-      getCodeBeingTested().run();
+      getCodeBeingTested().call();
     }
     catch (final Throwable e) {
       @SuppressWarnings("unchecked")
@@ -53,11 +56,11 @@ public class RunnableTestResultHandler extends AbstractTestResultHandler<Throwab
   }
 
   @Override
-  public ThenAfterRunning then(final ThrowableRunnable thenDo) {
+  public ThenAfterCalling<T> then(final Consumer<T> then) {
     try {
-      getCodeBeingTested().run();
-      thenDo.run();
-      return new ThenAfterRunning(this);
+      final T actual = getCodeBeingTested().call();
+      then.accept(actual);
+      return new ThenAfterCalling<>(this, actual);
     }
     catch (final Throwable e) {
       throw new TestInfoAddedAssertionError(this.getTestInfo(), e);

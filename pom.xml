@@ -2,7 +2,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>cc.kevinlee</groupId>
+  <groupId>kevinlee</groupId>
   <artifactId>test0ster1</artifactId>
   <version>0.0.6-SNAPSHOT</version>
   <packaging>jar</packaging>
@@ -13,19 +13,19 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <java.version>1.8</java.version>
-    <junit.version>4.11</junit.version>
+    <junit-jupiter.version>5.5.0</junit-jupiter.version>
   </properties>
 
   <repositories>
     <repository>
       <id>kevin-public-snapshots</id>
       <name>Kevin's Public Snapshots</name>
-      <url>http://nexus.lckymn.com/content/repositories/kevin-public-snapshots</url>
+      <url>https://repo.kevinlee.io/repository/kevin-public-releases</url>
     </repository>
     <repository>
       <id>kevin-public-releases</id>
       <name>Kevin's Public Releases</name>
-      <url>http://nexus.lckymn.com/content/repositories/kevin-public-releases</url>
+      <url>https://repo.kevinlee.io/repository/kevin-public-snapshots</url>
     </repository>
   </repositories>
 
@@ -40,14 +40,14 @@
     <repository>
       <id>kevin-public-releases</id>
       <name>Kevin's Public Releases</name>
-      <url>http://nexus.lckymn.com/content/repositories/kevin-public-releases</url>
+      <url>https://repo.kevinlee.io/repository/kevin-public-releases</url>
       <uniqueVersion>true</uniqueVersion>
       <layout>default</layout>
     </repository>
     <snapshotRepository>
       <id>kevin-public-snapshots</id>
       <name>Kevin's Public Snapshots</name>
-      <url>http://nexus.lckymn.com/content/repositories/kevin-public-snapshots</url>
+      <url>https://repo.kevinlee.io/repository/kevin-public-snapshots</url>
       <uniqueVersion>true</uniqueVersion>
       <layout>default</layout>
     </snapshotRepository>
@@ -79,7 +79,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
-        <version>3.1</version>
+        <version>3.8.1</version>
         <configuration>
           <source>${java.version}</source>
           <target>${java.version}</target>
@@ -89,7 +89,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-source-plugin</artifactId>
-        <version>2.3</version>
+        <version>3.1.0</version>
         <executions>
           <execution>
             <id>attach-sources</id>
@@ -110,12 +110,12 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-release-plugin</artifactId>
-        <version>2.5.1</version>
+        <version>2.5.3</version>
         <dependencies>
           <dependency>
             <groupId>org.apache.maven.scm</groupId>
             <artifactId>maven-scm-provider-gitexe</artifactId>
-            <version>1.9.2</version>
+            <version>1.11.2</version>
           </dependency>
         </dependencies>
         <configuration>
@@ -128,22 +128,22 @@
 
   <dependencies>
     <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>${junit.version}</version>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter</artifactId>
+      <version>${junit-jupiter.version}</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.assertj</groupId>
       <artifactId>assertj-core</artifactId>
-      <version>1.5.0</version>
+      <version>3.12.2</version>
       <scope>test</scope>
     </dependency>
 
     <dependency>
       <groupId>org.mockito</groupId>
-      <artifactId>mockito-all</artifactId>
-      <version>1.9.5</version>
+      <artifactId>mockito-core</artifactId>
+      <version>3.0.0</version>
       <scope>test</scope>
     </dependency>
 

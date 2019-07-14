@@ -13,15 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package cc.kevinlee.testosterone;
+package kevinlee.testosterone;
 
-import static cc.kevinlee.testosterone.Testosterone.*;
+import org.junit.jupiter.api.Test;
+
+import static kevinlee.testosterone.Testosterone.*;
 import static org.assertj.core.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 import java.util.Objects;
-
-import org.junit.Test;
 
 /**
  * @author Lee, SeongHyun (Kevin)

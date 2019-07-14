@@ -13,26 +13,28 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package cc.kevinlee.testosterone;
+package kevinlee.testosterone;
 
 /**
  * @author Lee, SeongHyun (Kevin)
- * @version 0.0.1 (2014-08-17)
+ * @version 0.0.1 (2014-08-26)
  *
  */
-public class TestInfoAddedAssertionError extends AssertionError {
-  private static final long serialVersionUID = 1L;
-  private final String testInfo;
+public class ThenAfterRunning implements Then<ThrowableRunnable> {
+  private final TestResultHandler<?> testResultHandler;
 
-  private final Throwable actualThrowable;
-
-  public TestInfoAddedAssertionError(final String testInfo, final Throwable actualThrowable) {
-    this.testInfo = testInfo;
-    this.actualThrowable = actualThrowable;
+  public ThenAfterRunning(final TestResultHandler<?> testResultHandler) {
+    this.testResultHandler = testResultHandler;
   }
 
   @Override
-  public String toString() {
-    return testInfo + actualThrowable.toString();
+  public ThenAfterRunning then(final ThrowableRunnable thenDo) {
+    try {
+      thenDo.run();
+      return this;
+    }
+    catch (final Throwable e) {
+      throw new TestInfoAddedAssertionError(testResultHandler.getTestInfo(), e);
+    }
   }
 }
