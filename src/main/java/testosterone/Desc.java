@@ -1,4 +1,4 @@
-package kevinlee.testosterone;
+package testosterone;
 
 /**
  * @author Lee, Seong Hyun (Kevin)
