@@ -2,10 +2,15 @@ import kevinlee.sbt.SbtCommon._
 import kevinlee.sbt.devoops.data.SbtTaskError
 import kevinlee.sbt.io.CaseSensitivity
 import org.scoverage.coveralls.Imports.CoverallsKeys._
+import ProjectInfo._
 
-ThisBuild / organization := "kevinlee"
-ThisBuild / version := "0.0.7"
-ThisBuild / scalaVersion := "2.12.8"
+ThisBuild / organization := "io.kevinlee"
+ThisBuild / version := ProjectVersion
+ThisBuild / scalaVersion := "2.12.10"
+
+ThisBuild / developers   := projectDevelopers
+ThisBuild / homepage     := projectHomePage
+ThisBuild / scmInfo      := projectScmInfo
 
 val projectBuildSourceEncoding = "UTF-8"
 val javaVersion = "1.8"
