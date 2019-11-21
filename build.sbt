@@ -9,18 +9,26 @@ ThisBuild / homepage     := projectHomePage
 ThisBuild / scmInfo      := projectScmInfo
 
 val projectBuildSourceEncoding = "UTF-8"
-val javaVersion = "1.8"
 val junitJupiterVersion = "5.5.0"
 
 lazy val test0ster1 = (project in file("."))
-    .settings(
-      name := "test0ster1"
-    )
     .enablePlugins(DevOopsJavaPlugin)
     .enablePlugins(DevOopsGitReleasePlugin)
     .enablePlugins(JacocoCoverallsPlugin)
     .settings(
-      resolvers ++= Seq(
+      name := "test0ster1"
+    , javacOptions := Seq(
+        "-source", javaVersion.value
+      , "-encoding", "UTF-8"
+      )
+    , javacOptions in (Compile, compile) ++= Seq(
+        "-target", javaVersion.value
+      , "-Xlint:unchecked"
+      , "-g"
+      , "-deprecation"
+      )
+    , javacOptions in (Compile, test) := (javacOptions in (Compile, compile)).value
+    , resolvers ++= Seq(
         Resolver.jcenterRepo
       )
     , libraryDependencies ++= Seq(
