@@ -13,13 +13,24 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package kevinlee.testosterone;
+package testosterone;
+
+import java.util.Objects;
 
 /**
  * @author Lee, SeongHyun (Kevin)
- * @version 0.0.1 (2014-08-26)
+ * @version 0.0.1 (2014-08-12)
  *
  */
-public interface Then<T> {
-  Then<T> then(final T t);
+@FunctionalInterface
+public interface ExpectedExceptionAssertion<EX extends Throwable> {
+  void assertThrowable(final TestResultHandler<?> testResultHandler, final Throwable throwable);
+
+  default <E extends Throwable> ExpectedExceptionAssertion<EX> andThen(final ExpectedExceptionAssertion<? super E> after) {
+    Objects.requireNonNull(after);
+    return (testResultHandler, ex) -> {
+      this.assertThrowable(testResultHandler, ex);
+      after.assertThrowable(testResultHandler, ex);
+    };
+  }
 }

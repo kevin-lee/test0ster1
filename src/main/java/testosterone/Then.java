@@ -13,16 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package kevinlee.testosterone;
-
+package testosterone;
 
 /**
  * @author Lee, SeongHyun (Kevin)
- * @version 0.0.1 (2014-08-17)
+ * @version 0.0.1 (2014-08-26)
  *
  */
-public interface ThrowableTestResultHandler<T> {
-  <EX extends Throwable> void expect(ExpectedExceptionAssertions<EX> expectedExceptionAssertion);
-
-  Then<T> then(T then) throws Exception;
+public interface Then<T> {
+  Then<T> then(final T t);
 }

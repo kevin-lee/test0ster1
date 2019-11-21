@@ -13,28 +13,26 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package kevinlee.testosterone;
+package testosterone;
 
 /**
  * @author Lee, SeongHyun (Kevin)
- * @version 0.0.1 (2014-08-12)
+ * @version 0.0.1 (2014-08-17)
  *
  */
-public abstract class AbstractTestResultHandler<T> implements TestResultHandler<T> {
+public class TestInfoAddedAssertionError extends AssertionError {
+  private static final long serialVersionUID = 1L;
+  private final String testInfo;
 
-  protected final int testNumber;
+  private final Throwable actualThrowable;
 
-  protected final Testosterone testosterone;
-
-  public AbstractTestResultHandler(final int testNumber, final Testosterone testosterone) {
-    this.testNumber = testNumber;
-    this.testosterone = testosterone;
+  public TestInfoAddedAssertionError(final String testInfo, final Throwable actualThrowable) {
+    this.testInfo = testInfo;
+    this.actualThrowable = actualThrowable;
   }
 
   @Override
-  public String getTestInfo() {
-    final String name = testosterone.getName();
-    final String description = testosterone.getDescription();
-    return "## Test Info \n[Name: " + name + " (" + testNumber + ")" + "] \n[Description: " + description + "] \n";
+  public String toString() {
+    return testInfo + actualThrowable.toString();
   }
 }

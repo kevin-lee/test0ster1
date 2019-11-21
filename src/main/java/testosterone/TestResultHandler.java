@@ -13,28 +13,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package kevinlee.testosterone;
+package testosterone;
 
 /**
  * @author Lee, SeongHyun (Kevin)
- * @version 0.0.1 (2014-08-26)
+ * @version 0.0.1 (2014-08-17)
  *
  */
-public class ThenAfterRunning implements Then<ThrowableRunnable> {
-  private final TestResultHandler<?> testResultHandler;
+public interface TestResultHandler<T> {
 
-  public ThenAfterRunning(final TestResultHandler<?> testResultHandler) {
-    this.testResultHandler = testResultHandler;
-  }
+  String getTestInfo();
 
-  @Override
-  public ThenAfterRunning then(final ThrowableRunnable thenDo) {
-    try {
-      thenDo.run();
-      return this;
-    }
-    catch (final Throwable e) {
-      throw new TestInfoAddedAssertionError(testResultHandler.getTestInfo(), e);
-    }
-  }
+  <EX extends Throwable> void expect(final ExpectedExceptionAssertions<EX> expectedExceptionAssertion);
+
+  Then<T> then(final T then);
 }

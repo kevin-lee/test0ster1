@@ -13,11 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package kevinlee.testosterone;
+package testosterone;
 
 import org.junit.jupiter.api.Test;
 
-import static kevinlee.testosterone.Testosterone.*;
 import static org.assertj.core.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
@@ -35,12 +34,12 @@ public class TestosteroneTest {
     /* Given */
     final String value = null;
 
-    test("throwingNullTest",
+    Testosterone.test("throwingNullTest",
          "Objects.requireNonNull(null, \"message\") should throw NullPointerException.")
     .when(() -> {
       Objects.requireNonNull(value, "value cannot be null.");
     })
-    .expect(throwing(NullPointerException.class)
+    .expect(Testosterone.throwing(NullPointerException.class)
            .hasMessage("value cannot be null.")
            .containsMessage("cannot be null"));
     /* @formatter:on */
@@ -58,12 +57,12 @@ public class TestosteroneTest {
     /* Given */
     final String value = null;
 
-    test("throwingNullTest2",
+    Testosterone.test("throwingNullTest2",
         "throwRuntimeException(null) should throw RuntimeException caused by NullPointerException.")
     .when(() ->
       throwRuntimeException(value)
     )
-    .expect(throwing(RuntimeException.class)
+    .expect(Testosterone.throwing(RuntimeException.class)
            .hasMessage("test exception")
            .containsMessage("test ")
            .causedBy(NullPointerException.class)
@@ -82,7 +81,7 @@ public class TestosteroneTest {
     };
 
     /* @formatter:off */
-    test("verifyVoidMethod",
+    Testosterone.test("verifyVoidMethod",
          "innerRunnable1.run() and innerRunnable2.run() should be invoked when runnable.run().")
     .when(() -> {
       runnable.run();
@@ -108,7 +107,7 @@ public class TestosteroneTest {
     final String input = "  " + expected + "  ";
 
     /* @formatter:off */
-    test("testNullSafeTrim",
+    Testosterone.test("testNullSafeTrim",
          "nullSafeTrim(\"  result  \") should return \"result\".")
     .when(() ->
       nullSafeTrim(input)

@@ -20,7 +20,7 @@ Test0ster1 (pronounced as 'Testosterone', Testosterone -> Test0sterone -> Test0s
 * test an expected exception
 
 ```java
-import static kevinlee.testosterone.Testosterone.*;
+import static testosterone.Testosterone.*;
 import java.util.Objects;
 
 import org.junit.Test;
@@ -45,7 +45,7 @@ import org.junit.Test;
 * test an expected exception and its cause
 
 ```java
-import static kevinlee.testosterone.Testosterone.*;
+import static testosterone.Testosterone.*;
 
 import org.junit.Test;
 ```
@@ -77,7 +77,7 @@ import org.junit.Test;
 * test a void return type method (with [Mockito](https://github.com/mockito/mockito))
 
 ```java
-import static kevinlee.testosterone.Testosterone.*;
+import static testosterone.Testosterone.*;
 import static org.mockito.Mockito.*;
 
 import org.junit.Test;
@@ -110,7 +110,7 @@ import org.junit.Test;
 * test a method which returns some result (with [AssertJ](http://joel-costigliola.github.io/assertj/))
 
 ```java
-import static kevinlee.testosterone.Testosterone.*;
+import static testosterone.Testosterone.*;
 import static org.assertj.core.api.Assertions.*;
 
 import org.junit.Test;
