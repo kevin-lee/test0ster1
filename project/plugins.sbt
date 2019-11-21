@@ -1,14 +1,13 @@
 logLevel := Level.Warn
 
-addSbtPlugin("org.foundweekends" % "sbt-bintray" % "0.5.4")
+addSbtPlugin("org.foundweekends" % "sbt-bintray" % "0.5.5")
 
-addSbtPlugin("org.scoverage" % "sbt-scoverage" % "1.5.1")
+addSbtPlugin("io.kevinlee" % "sbt-devoops" % "1.0.2")
 
-addSbtPlugin("org.scoverage" % "sbt-coveralls" % "1.2.2")
+resolvers += Resolver.url("Kevin's bintray", url("https://dl.bintray.com/kevinlee/sbt-plugins"))(Resolver.ivyStylePatterns)
 
-addSbtPlugin("kevinlee" % "sbt-devoops" % "0.2.0")
+addSbtPlugin("com.github.sbt" % "sbt-jacoco" % "3.2.1")
 
 resolvers += Resolver.jcenterRepo
 
-addSbtPlugin("net.aichler" % "sbt-jupiter-interface" % "0.8.2")
-
+addSbtPlugin("net.aichler" % "sbt-jupiter-interface" % "0.8.3")
