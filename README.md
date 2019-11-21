@@ -5,6 +5,7 @@ Test0ster1 (Testosterone)
 [![Release Status](https://github.com/Kevin-Lee/test0ster1/workflows/Release/badge.svg)](https://github.com/Kevin-Lee/test0ster1/actions?workflow=Release)
 
 [![Download](https://api.bintray.com/packages/kevinlee/maven/test0ster1/images/download.svg)](https://bintray.com/kevinlee/maven/test0ster1/_latestVersion)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/io.kevinlee/test0ster1/badge.svg)](https://search.maven.org/artifact/io.kevinlee/test0ster1)
 
 Test0ster1 (pronounced as 'Testosterone', Testosterone -> Test0sterone -> Test0ster(one == 1) -> Test0ster1 ) is a simple test helper framework which uses Java 8's new functional features (i.e. Lambda Expressions, Default Methods, etc.) in order to provide simple and easy to use test tools.
 
@@ -142,26 +143,6 @@ import org.junit.Test;
 
 ## Get Test0ster1
 ### Maven
-* Add maven repository
-
-```xml
-<repositories>
-  ...
-
-  <repository>
-    <snapshots>
-      <enabled>false</enabled>
-    </snapshots>
-    <id>bintray-kevinlee-maven</id>
-    <name>bintray</name>
-    <url>http://dl.bintray.com/kevinlee/maven</url>
-  </repository>
-
-  ...
-</repositories>
-```
-
-* Add dependency
 
 ```xml
 <dependencies>
@@ -179,27 +160,6 @@ import org.junit.Test;
 ```
 
 ### Gradle
-* Add maven repository
-
-  In `build.gradle`, add the following repository to `repositories`.
-
-```gradle
-maven {
-    url  "http://dl.bintray.com/kevinlee/maven"
-}
-```
-  e.g.)
-
-```gradle
-repositories {
-  mavenCentral()
-  maven {
-    url  "http://dl.bintray.com/kevinlee/maven"
-  }
-}
-```
-
-* Add Dependency
 
 ```gradle
 testCompile group: 'io.kevinlee', name: 'test0ster1', version: '0.1.0'
