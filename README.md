@@ -1,8 +1,9 @@
 Test0ster1 (Testosterone)
 =========================
 
-[![Build Status](https://semaphoreci.com/api/v1/kevin-lee/test0ster1/branches/master/badge.svg)](https://semaphoreci.com/kevin-lee/test0ster1)
-[![Coverage Status](https://coveralls.io/repos/Kevin-Lee/test0ster1/badge.svg)](https://coveralls.io/r/Kevin-Lee/test0ster1)
+[![Build Status](https://github.com/Kevin-Lee/test0ster1/workflows/Build/badge.svg)](https://github.com/Kevin-Lee/test0ster1/actions?workflow=Build)
+[![Release Status](https://github.com/Kevin-Lee/test0ster1/workflows/Release/badge.svg)](https://github.com/Kevin-Lee/test0ster1/actions?workflow=Release)
+
 [![Download](https://api.bintray.com/packages/kevinlee/maven/test0ster1/images/download.svg)](https://bintray.com/kevinlee/maven/test0ster1/_latestVersion)
 
 Test0ster1 (pronounced as 'Testosterone', Testosterone -> Test0sterone -> Test0ster(one == 1) -> Test0ster1 ) is a simple test helper framework which uses Java 8's new functional features (i.e. Lambda Expressions, Default Methods, etc.) in order to provide simple and easy to use test tools.
