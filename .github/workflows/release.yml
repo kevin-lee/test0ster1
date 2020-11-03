@@ -21,16 +21,22 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_AUTH_TOKEN }}
       run: |
         echo "Run] sbt GitHub release"
-        echo 'sbt -J-Xmx2048m "; clean; test; packagedArtifacts; gitHubRelease"'
-        sbt -J-Xmx2048m "; clean; test; packagedArtifacts; gitHubRelease"
+        echo 'sbt -J-Xmx2048m clean test packagedArtifacts gitHubRelease'
+        sbt -J-Xmx2048m \
+          clean \
+          test \
+          packagedArtifacts \
+          gitHubRelease
     - name: sbt Publish
       env:
         BINTRAY_USER: ${{ secrets.BINTRAY_USER }}
         BINTRAY_PASS: ${{ secrets.BINTRAY_PASS }}
       run: |
         echo "Run] sbt publish"
-        echo 'sbt -J-Xmx2048m "; clean; publish"'
-        sbt -J-Xmx2048m "; clean; publish"
+        echo 'sbt -J-Xmx2048m clean publish'
+        sbt -J-Xmx2048m \
+          clean \
+          publish
 
     - name: Sync to Maven Central
       env:
