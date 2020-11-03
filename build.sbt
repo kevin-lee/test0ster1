@@ -2,14 +2,14 @@ import ProjectInfo._
 
 ThisBuild / organization := "io.kevinlee"
 ThisBuild / version := ProjectVersion
-ThisBuild / scalaVersion := "2.12.10"
+ThisBuild / scalaVersion := "2.13.3"
 
 ThisBuild / developers   := projectDevelopers
 ThisBuild / homepage     := projectHomePage
 ThisBuild / scmInfo      := projectScmInfo
 
 val projectBuildSourceEncoding = "UTF-8"
-val junitJupiterVersion = "5.5.0"
+val junitJupiterVersion = "5.6.2"
 
 lazy val test0ster1 = (project in file("."))
     .enablePlugins(DevOopsJavaPlugin)
@@ -34,8 +34,8 @@ lazy val test0ster1 = (project in file("."))
     , libraryDependencies ++= Seq(
         "org.junit.jupiter" % "junit-jupiter" % junitJupiterVersion % Test
       , "net.aichler" % "jupiter-interface" % JupiterKeys.jupiterVersion.value % Test
-      , "org.assertj" % "assertj-core" % "3.12.2" % Test
-      , "org.mockito" % "mockito-core" % "3.0.0" % Test
+      , "org.assertj" % "assertj-core" % "3.17.2" % Test
+      , "org.mockito" % "mockito-core" % "3.5.10" % Test
       )
     , testOptions += Tests.Argument(TestFrameworks.JUnit, "-a")
 
