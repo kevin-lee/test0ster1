@@ -151,7 +151,7 @@ import org.junit.Test;
   <dependency>
     <groupId>io.kevinlee</groupId>
     <artifactId>test0ster1</artifactId>
-    <version>0.1.0</version>
+    <version>0.2.0</version>
     <scope>test</scope>
   </dependency>
 
@@ -162,10 +162,10 @@ import org.junit.Test;
 ### Gradle
 
 ```gradle
-testCompile group: 'io.kevinlee', name: 'test0ster1', version: '0.1.0'
+testCompile group: 'io.kevinlee', name: 'test0ster1', version: '0.2.0'
 ```
   OR
 
 ```gradle
-testCompile "io.kevinlee:test0ster1:0.1.0"
+testCompile "io.kevinlee:test0ster1:0.2.0"
 ```
