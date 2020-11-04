@@ -22,5 +22,5 @@ package testosterone;
  */
 @FunctionalInterface
 public interface ThrowableRunnable {
-  void run() throws Exception;
+  void run() throws Throwable;
 }

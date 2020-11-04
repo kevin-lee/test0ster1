@@ -15,7 +15,6 @@
  */
 package testosterone;
 
-import java.util.concurrent.Callable;
 import java.util.function.Consumer;
 
 /**
@@ -23,16 +22,22 @@ import java.util.function.Consumer;
  * @version 0.0.1 (2014-08-16)
  *
  */
-public class CallableTestResultHandler<T> extends AbstractTestResultHandler<Consumer<T>> implements ThrowableTestResultHandler<Consumer<T>> {
+public class CallableTestResultHandler<T>
+  extends AbstractTestResultHandler<Consumer<T>>
+  implements ThrowableTestResultHandler<Consumer<T>> {
 
-  private final Callable<T> callable;
+  private final ThrowableCallable<T> callable;
 
-  public CallableTestResultHandler(final int testNumber, final Testosterone testosterone, final Callable<T> callable) {
+  public CallableTestResultHandler(
+    final int testNumber,
+    final Testosterone testosterone,
+    final ThrowableCallable<T> callable
+  ) {
     super(testNumber, testosterone);
     this.callable = callable;
   }
 
-  Callable<T> getCodeBeingTested() {
+  ThrowableCallable<T> getCodeBeingTested() {
     return callable;
   }
 
