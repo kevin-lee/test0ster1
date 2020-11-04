@@ -15,7 +15,6 @@
  */
 package testosterone;
 
-import java.util.concurrent.Callable;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Function;
 
@@ -46,7 +45,7 @@ public class Testosterone {
     return new RunnableTestResultHandler(testNumberGenerator.getAndIncrement(), this, runnable);
   }
 
-  public <T> CallableTestResultHandler<T> when(final Callable<T> callable) {
+  public <T> CallableTestResultHandler<T> when(final ThrowableCallable<T> callable) {
     return new CallableTestResultHandler<>(testNumberGenerator.getAndIncrement(), this, callable);
   }
 
