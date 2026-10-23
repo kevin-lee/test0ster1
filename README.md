@@ -1,8 +1,8 @@
 Test0ster1 (Testosterone)
 =========================
 
-[![Build Status](https://github.com/Kevin-Lee/test0ster1/workflows/Build/badge.svg)](https://github.com/Kevin-Lee/test0ster1/actions?workflow=Build)
-[![Release Status](https://github.com/Kevin-Lee/test0ster1/workflows/Release/badge.svg)](https://github.com/Kevin-Lee/test0ster1/actions?workflow=Release)
+[![Build Status](https://github.com/kevin-lee/test0ster1/workflows/Build/badge.svg)](https://github.com/kevin-lee/test0ster1/actions?workflow=Build)
+[![Release Status](https://github.com/kevin-lee/test0ster1/workflows/Release/badge.svg)](https://github.com/kevin-lee/test0ster1/actions?workflow=Release)
 
 [![Download](https://api.bintray.com/packages/kevinlee/maven/test0ster1/images/download.svg)](https://bintray.com/kevinlee/maven/test0ster1/_latestVersion)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/io.kevinlee/test0ster1/badge.svg)](https://search.maven.org/artifact/io.kevinlee/test0ster1)

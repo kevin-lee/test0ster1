@@ -5,15 +5,15 @@ object ProjectInfo {
 
   val projectDevelopers: List[Developer] = List(
     Developer(
-        "Kevin-Lee", "Kevin Lee"
+        "kevin-lee", "Kevin Lee"
       , "kevin.code@kevinlee.io"
-      , url("https://github.com/Kevin-Lee")
+      , url("https://github.com/kevin-lee")
     ))
 
-  val projectHomePage: Option[sbt.URL] = Some(url("https://github.com/Kevin-Lee/test0ster1"))
+  val projectHomePage: Option[sbt.URL] = Some(url("https://github.com/kevin-lee/test0ster1"))
 
   val projectScmInfo: Option[ScmInfo] = Some(ScmInfo(
-        url("https://github.com/Kevin-Lee/test0ster1")
-      , "git@github.com:Kevin-Lee/test0ster1.git"
+        url("https://github.com/kevin-lee/test0ster1")
+      , "git@github.com:kevin-lee/test0ster1.git"
     ))
 }
