@@ -1,10 +1,10 @@
 logLevel := Level.Warn
 
-addSbtPlugin("com.geirsson"   % "sbt-ci-release"        % "1.5.7")
-addSbtPlugin("com.github.sbt" % "sbt-jacoco"            % "3.3.0")
-addSbtPlugin("net.aichler"    % "sbt-jupiter-interface" % "0.9.1")
+addSbtPlugin("com.github.sbt"   % "sbt-ci-release"        % "1.12.1")
+addSbtPlugin("com.github.sbt" % "sbt-jacoco"            % "3.7.0")
+addSbtPlugin("com.github.sbt.junit" % "sbt-jupiter-interface" % "0.19.0")
 
-val sbtDevOopsVersion = "2.6.0"
+val sbtDevOopsVersion = "3.9.0"
 addSbtPlugin("io.kevinlee" % "sbt-devoops-java"      % sbtDevOopsVersion)
 addSbtPlugin("io.kevinlee" % "sbt-devoops-sbt-extra" % sbtDevOopsVersion)
 addSbtPlugin("io.kevinlee" % "sbt-devoops-github"    % sbtDevOopsVersion)

@@ -2,7 +2,7 @@ import ProjectInfo._
 
 ThisBuild / organization := "io.kevinlee"
 ThisBuild / version := ProjectVersion
-ThisBuild / scalaVersion := "2.13.3"
+ThisBuild / scalaVersion := "2.13.18"
 
 ThisBuild / developers := projectDevelopers
 ThisBuild / homepage := projectHomePage
@@ -32,10 +32,10 @@ lazy val test0ster1 = (project in file("."))
     ),
     Compile / test / javacOptions := (Compile / compile / javacOptions).value,
     libraryDependencies ++= List(
-      "org.junit.jupiter" % "junit-jupiter"     % junitJupiterVersion              % Test,
-      "net.aichler"       % "jupiter-interface" % JupiterKeys.jupiterVersion.value % Test,
-      "org.assertj"       % "assertj-core"      % "3.17.2"                         % Test,
-      "org.mockito"       % "mockito-core"      % "3.5.10"                         % Test
+      "org.junit.jupiter"    % "junit-jupiter"     % junitJupiterVersion              % Test,
+      "com.github.sbt.junit" % "jupiter-interface" % JupiterKeys.jupiterVersion.value % Test,
+      "org.assertj"          % "assertj-core"      % "3.17.2"                         % Test,
+      "org.mockito"          % "mockito-core"      % "3.5.10"                         % Test
     ),
     testOptions += Tests.Argument(TestFrameworks.JUnit, "-a")
 
