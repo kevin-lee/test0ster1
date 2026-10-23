@@ -7,30 +7,17 @@ jobs:
   build_java_project:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - uses: actions/setup-java@v1
+    - uses: actions/checkout@v7
+    - uses: actions/setup-java@v6
       with:
-        java-version: "8"
-
-    - name: Cache Coursier
-      uses: actions/cache@v1
-      with:
-        path: ~/.cache/coursier
-        key: ${{ runner.os }}-coursier-${{ hashFiles('**/*.sbt') }}
-        restore-keys: |
-          ${{ runner.os }}-coursier-
-
-    - name: Cache Ivy
-      uses: actions/cache@v1
-      with:
-        path: ~/.ivy2/cache
-        key: ${{ runner.os }}-ivy-${{ hashFiles('**/*.sbt') }}
-        restore-keys: |
-          ${{ runner.os }}-ivy-
+        distribution: "temurin"
+        java-version: "21"
+        cache: "sbt"
+    - uses: sbt/setup-sbt@v1
 
     - name: Build Java Project
       env:
         COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
       run: |
         export CI_BRANCH="${GITHUB_REF#refs/heads/}"
-        .github/workflows/sbt-build.sh 2.13.3
+        .github/workflows/sbt-build.sh 2.13.18
